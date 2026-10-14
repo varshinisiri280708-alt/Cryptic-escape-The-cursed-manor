@@ -65,6 +65,14 @@ def load_json(path, default):
     return default.copy()
 
 settings = load_json(SETTINGS_FILE, DEFAULT_SETTINGS)
+try:
+    pygame.mixer.init()
+    music_path = os.path.join(BASE_DIR, "sounds", "background.mp3")
+    pygame.mixer.music.load(music_path)
+    pygame.mixer.music.set_volume(0.3)
+    pygame.mixer.music.play(-1)
+except Exception as e:
+    print("Music error:", e)
 
 # External room artwork. Images are mapped onto the ray-cast wall surfaces,
 # so they follow the game's pseudo-3D perspective instead of being flat overlays.
